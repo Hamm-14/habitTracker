@@ -1,6 +1,7 @@
 const express = require('express');
 const port = 8000;
 
+const db = require('./config/mongoose');
 const app = express();
 const path = require('path');
 
@@ -13,7 +14,7 @@ app.use(express.urlencoded({extended: true}));  //using parser to read form data
 app.listen(port,function(err){
     if(err){console.log('Error in running server');return;}
 
-    console.log("Express server is up and running on port ",port);
+    console.log("Express server is up and running on port",port);
     return;
 });
 

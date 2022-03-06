@@ -6,12 +6,12 @@ var signup = function(){
 	regButton.addEventListener('click',function(){
 	formContainer.innerHTML = '';
 	formContainer.innerHTML = `<h3>Register</h3>
-			<form>
+			<form action="/users/create" method="post">
 				<input type="email" name="email" placeholder="E-Mail">
-				<input type="text" name="user" placeholder="Username">
+				<input type="text" name="name" placeholder="Username">
 				<input type="password" name="password" placeholder="Password">
-				<input type="password" name="confirm-password" placeholder="Confirm Password"><br>
-				<button type="button" class="btn btn-primary">Signup</button>
+				<input type="password" name="confirm_password" placeholder="Confirm Password"><br>
+				<button type="submit" class="btn btn-primary">Signup</button>
 			</form>
 			<div id="reg-button">
 				<button type="button" class="btn btn-danger">Login</button>
@@ -31,10 +31,10 @@ var backToLogin = function(){
 	regButton.addEventListener('click',function(){
 		formContainer.innerHTML = '';
 		formContainer.innerHTML = `<h3>Login</h3>
-			<form>
+			<form ation="/users/create-session" method="post">
 				<input type="email" name="email" placeholder="E-Mail">
 				<input type="password" name="password" placeholder="Password"><br>
-				<button type="button" class="btn btn-primary">login</button>
+				<button type="submit" class="btn btn-primary">login</button>
 			</form>
 			<div id="reg-button">
 				<button type="button" class="btn btn-danger">Register</button>

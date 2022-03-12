@@ -9,5 +9,6 @@ router.get('/',passport.checkAuthentication,homeController.home);
 
 
 router.use('/users',require('./users'));
+router.use('/habit',require('./habit'));
 
 module.exports = router;

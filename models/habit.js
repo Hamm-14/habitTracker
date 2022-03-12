@@ -8,14 +8,9 @@ const habitSchema = new mongoose.Schema({
     favourite: {
         type: Boolean
     },
-    status: {
-        date: {
-            type: Date,
-        },
-        state: {
-            type: String,
-            enum: ['finished','unfinished']
-        }
+    currentStatus: {
+        date: Date,
+        state: String
     }
 },{
     timestamps: true

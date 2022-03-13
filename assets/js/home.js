@@ -2,7 +2,7 @@
 getCurrentWeak = function(){
   let curr = new Date;
   let week = [];
-  for (let i = 1; i <= 7; i++) {
+  for (let i = 0; i < 7; i++) {
     let first = curr.getDate() - curr.getDay() + i 
     let day = new Date(curr.setDate(first)).toISOString().slice(0, 10)
     week.push(day)
@@ -18,7 +18,7 @@ createWeekDays = function(){
   var d = new Date();  //creating the object of today's date
   var  months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
   var monthName = months[d.getMonth()];
-  var dayNames = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
+  var dayNames = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
 
   var habitsWeekdays = document.getElementsByClassName('weekdays-container'); //fetching all habits weekdays container
   for(let j=0;j<habitsWeekdays.length;j++)

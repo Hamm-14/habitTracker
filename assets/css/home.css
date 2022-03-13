@@ -234,3 +234,18 @@ a{
 	font-family: cursive;
 }
 
+.today{
+	width: 10%;
+	height: 85%;
+	border: 1px solid grey;
+	margin-top: 1.1%;
+	margin-left: 1%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.center{
+	justify-content: center;
+}
+

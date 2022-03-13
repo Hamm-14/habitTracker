@@ -10,11 +10,19 @@ formatDate = function(dateProperty) {
     return formattedDate;
 }
 
+//return the day-number of the week
+today = function(){
+    let curr = new Date 
+    let currentDay = curr.toString().substring(0,3);
+    let weekdays = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    return weekdays.indexOf(currentDay);
+}
+
 //stores all the days of current week into week arrray 
 getCurrentWeek = function(){
     let curr = new Date;
     var week = [];
-    for (let i = 1; i <= 7; i++) {
+    for (let i = 0; i < 7; i++) {
         let first = curr.getDate() - curr.getDay() + i 
         let day = new Date(curr.setDate(first)).toISOString().slice(0, 10)
         week.push(day)
@@ -41,13 +49,46 @@ module.exports.home = async function(req,res){
                 }
                 habitsStatus.push(subArr);
             }
-
-            // console.log(habitsStatus[0][5]);
-            // console.log(week);
+            // console.log(today());
             return res.render('home',{
                 habits: user.habits,
                 status: habitsStatus,
                 week: week
+            });
+        }
+    }catch(err){
+        console.log(err);
+        return;
+    }
+}
+
+module.exports.daily = async function(req,res){
+    try{
+        if(req.user){
+            let user = await User.findById(req.user.id).populate('habits');
+            let habitsStatus = [];
+            let week = getCurrentWeek();
+            for(habit of user.habits){
+                let subArr = ['unmarked','unmarked','unmarked','unmarked','unmarked','unmarked','unmarked'];
+                for(let i=0;i<7;i++){
+                    for(let j=0;j<habit.currentStatus.length;j++){
+                        let formattedDate = formatDate(habit.currentStatus[j].date);
+                        if(formattedDate == week[i]){
+                            subArr[i] = habit.currentStatus[j].state;
+                            break;
+                        }
+                    }
+                }
+                habitsStatus.push(subArr);
+            }
+
+            // console.log(habitsStatus[0][5]);
+            // console.log(week);
+            return res.render('daily',{
+                habits: user.habits,
+                status: habitsStatus,
+                week: week,
+                dayNumber: today()
             });
         }
     }catch(err){

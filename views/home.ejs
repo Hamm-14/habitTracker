@@ -40,16 +40,121 @@
 		</form>
 
 		<div id="habits-container">
-			<div class="habit">
-				<div class="habit-title"><i class="fas fa-smile fa-lg"></i> <span>Running</span></div>
-				<div id="weekdays-container">
-					
-				</div>
-				<div class="habit-options">
-					<a href=""><i class="far fa-heart fa-md"></i></a>
-					<a href=""><i class="far fa-trash-alt fa-md"></i></a>
-				</div>
-			</div>
+			<% let i=0; %>
+			<% for(habit of habits){ %>
+				<div class="habit">
+					<div class="habit-title"><i class="fas fa-smile fa-lg"></i> <span><%= habit.content %></span></div>
+					<div class="weekdays-container">
+						<div class="monday">
+							<div class="day-name">Mon</div>
+                            <div class="date"></div>
+							<% if(status[i][0] == 'unmarked'){ %>
+								<div class="habit-status">
+									<button class="habit-finished"><a href="/habit/done/?habitId=<%= habit._id %>&date=<%= week[0] %>"><i class="fas fa-check fa-xs"></i></a></button>
+									<button class="habit-unfinished"><a href="/habit/undone/?habitId=<%= habit._id %>&date=<%= week[0] %>"><i class="fas fa-times fa-xs"></i></a></button>
+								</div>
+							<% } else { %>
+								<div class="habit-status">
+									<span class="<%= status[i][0] %>"><%= status[i][0] %></span>
+								</div>
+							<% } %> 
+						</div>
+						<div class="tuesday">
+							<div class="day-name">Tue</div>
+                            <div class="date"></div>
+                            <% if(status[i][1] == 'unmarked'){ %>
+								<div class="habit-status">
+									<button class="habit-finished"><a href="/habit/done/?habitId=<%= habit._id %>&date=<%= week[1] %>"><i class="fas fa-check fa-xs"></i></a></button>
+									<button class="habit-unfinished"><a href="/habit/undone/?habitId=<%= habit._id %>&date=<%= week[1] %>"><i class="fas fa-times fa-xs"></i></a></button>
+								</div>
+							<% } else { %>
+								<div class="habit-status">
+									<span class="<%= status[i][1] %>"><%= status[i][1] %></span>
+								</div>
+							<% } %>
+						</div>
+						<div class="wednesday">
+							<div class="day-name">Wed</div>
+                            <div class="date"></div>
+                            <% if(status[i][2] == 'unmarked'){ %>
+								<div class="habit-status">
+									<button class="habit-finished"><a href="/habit/done/?habitId=<%= habit._id %>&date=<%= week[2] %>"><i class="fas fa-check fa-xs"></i></a></button>
+									<button class="habit-unfinished"><a href="/habit/undone/?habitId=<%= habit._id %>&date=<%= week[2] %>"><i class="fas fa-times fa-xs"></i></a></button>
+								</div>
+							<% } else { %>
+								<div class="habit-status">
+									<span class="<%= status[i][2] %>"><%= status[i][2] %></span>
+								</div>
+							<% } %>
+						</div>
+						<div class="thursday">
+							<div class="day-name">Thurs</div>
+                            <div class="date"></div>
+                            <% if(status[i][3] == 'unmarked'){ %>
+								<div class="habit-status">
+									<button class="habit-finished"><a href="/habit/done/?habitId=<%= habit._id %>&date=<%= week[3] %>"><i class="fas fa-check fa-xs"></i></a></button>
+									<button class="habit-unfinished"><a href="/habit/undone/?habitId=<%= habit._id %>&date=<%= week[3] %>"><i class="fas fa-times fa-xs"></i></a></button>
+								</div>
+							<% } else { %>
+								<div class="habit-status">
+									<span class="<%= status[i][3] %>"><%= status[i][3] %></span>
+								</div>
+							<% } %>
+						</div>
+						<div class="friday">
+							<div class="day-name">Fri</div>
+                            <div class="date"></div>
+                            <% if(status[i][4] == 'unmarked'){ %>
+								<div class="habit-status">
+									<button class="habit-finished"><a href="/habit/done/?habitId=<%= habit._id %>&date=<%= week[4] %>"><i class="fas fa-check fa-xs"></i></a></button>
+									<button class="habit-unfinished"><a href="/habit/undone/?habitId=<%= habit._id %>&date=<%= week[4] %>"><i class="fas fa-times fa-xs"></i></a></button>
+								</div>
+							<% } else { %>
+								<div class="habit-status">
+									<span class="<%= status[i][4] %>"><%= status[i][4] %></span>
+								</div>
+							<% } %>
+						</div>
+						<div class="saturday">
+							<div class="day-name">Sat</div>
+                            <div class="date"></div>
+							<% if(status[i][5] == 'unmarked'){ %>
+								<div class="habit-status">
+									<button class="habit-finished"><a href="/habit/done/?habitId=<%= habit._id %>&date=<%= week[5] %>"><i class="fas fa-check fa-xs"></i></a></button>
+									<button class="habit-unfinished"><a href="/habit/undone/?habitId=<%= habit._id %>&date=<%= week[5] %>"><i class="fas fa-times fa-xs"></i></a></button>
+								</div>
+							<% } else { %>
+								<div class="habit-status">
+									<span class="<%= status[i][5] %>"><%= status[i][5] %></span>
+								</div>
+							<% } %>
+						</div>
+						<div class="sunday">
+							<div class="day-name">Sun</div>
+                            <div class="date"></div>
+                            <% if(status[i][6] == 'unmarked'){ %>
+								<div class="habit-status">
+									<button class="habit-finished"><a href="/habit/done/?habitId=<%= habit._id %>&date=<%= week[6] %>"><i class="fas fa-check fa-xs"></i></a></button>
+									<button class="habit-unfinished"><a href="/habit/undone/?habitId=<%= habit._id %>&date=<%= week[6] %>"><i class="fas fa-times fa-xs"></i></a></button>
+								</div>
+							<% } else { %>
+								<div class="habit-status">
+									<span class="<%= status[i][6] %>"><%= status[i][6] %></span>
+								</div>
+							<% } %>
+						</div>
+					</div>
+					<div class="habit-options">
+						<% if(habit.favourite == false){ %>
+							<a href="habit/favourite/add/?habitId=<%= habit._id %>"><i class="far fa-heart fa-md"></i></a>
+						<% }else{ %>
+							<a href="habit/favourite/remove/?habitId=<%= habit._id %>"><i class="fas fa-heart" style="color: red;"></i></a>
+						<% } %>
+						<a href="habit/delete/?habitId=<%= habit._id %>"><i class="far fa-trash-alt fa-md"></i></a>
+					</div>
+		        </div>
+			<% i = i + 1; %>
+			<% } %>
 		</div>
 	</main>
 

@@ -6,12 +6,13 @@ const habitSchema = new mongoose.Schema({
         required: true
     },
     favourite: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
-    currentStatus: {
+    currentStatus: [{
         date: Date,
         state: String
-    }
+    }]
 },{
     timestamps: true
 });

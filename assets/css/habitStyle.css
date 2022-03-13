@@ -61,18 +61,18 @@ header{
 main{
 	position: relative;
 	width: 80%;
-	height: 80%;
-	/*top: 1%;*/
+	height: 83%;
+	padding-top: 25px;
 	left: 10%;
 	background: rgba(0, 0, 0, 0.6);
-	overflow: auto;
+	/* overflow: auto; */
 }
 
 main h1{
 	text-align: center;
 	color: white;
 	font-family: monospace;
-	margin-top: 25px;
+	/* margin-top: 35px; */
 	text-transform: capitalize;
 }
 
@@ -113,7 +113,8 @@ main h1{
 	width: 80%;
 	height: 22%;
 	margin: auto;
-	margin-top: 2%;
+	/* /* margin-top: 1%; */
+	margin-bottom: 2%; 
 	background: black;
 	display: flex;
 	justify-content: space-between;
@@ -130,7 +131,7 @@ main h1{
 	font-family: cursive;
 }
 
-#weekdays-container{
+.weekdays-container{
 	height: 100%;
 	width: 65%;
 	/*border: 1px solid white;*/
@@ -203,6 +204,11 @@ main h1{
 
 }
 
+a{
+	text-decoration: none;
+	color: white;
+}
+
 .habit-finished{
 	/*background: #105f10;*/
 	background: green;
@@ -212,5 +218,19 @@ main h1{
 	/*background: #7d0d0d;*/
 	background: red;
 
+}
+
+.finished{
+	color: green;
+	text-transform: capitalize;
+	font-size: 0.7rem;
+	font-family: cursive;
+}
+
+.unfinished{
+	color: red;
+	text-transform: capitalize;
+	font-size: 0.7rem;
+	font-family: cursive;
 }
 

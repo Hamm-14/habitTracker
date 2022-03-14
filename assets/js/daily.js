@@ -30,7 +30,7 @@ getCurrentWeek = function(){
       for(let i = 0; i < 7; i++){
           if(week[i].substring(8,10) == today){
               let day = habitsWeekdays[j].getElementsByClassName('today');
-              day[0].style.cssText = 'height:100%; width:20%; margin-top:0; box-shadow: 0px 0px 4px 1px #a99cbb';
+              // day[0].style.cssText = 'height:90%; box-shadow: 0px 0px 4px 1px #a99cbb';
               let dayName = day[0].getElementsByClassName('day-name');
               dayName[0].innerHTML = dayNames[i];
               dayName[0].style.cssText = 'background:#b71c1c;font-size:1rem;'

@@ -1,5 +1,5 @@
 const express = require('express');
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 const db = require('./config/mongoose');  //mongoose setup
 const session = require('express-session'); //used for session-cookie

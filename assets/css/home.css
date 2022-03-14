@@ -249,3 +249,11 @@ a{
 	justify-content: center;
 }
 
+.font{
+	font-size: 1.1rem;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+

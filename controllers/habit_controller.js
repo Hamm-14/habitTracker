@@ -1,7 +1,8 @@
-const { query } = require('express');
+
 const Habit = require('../models/habit');
 const User = require('../models/user');
 
+//conroller to create new habit
 module.exports.create = function(req,res){
     if(req.user){
         Habit.create({content: req.body.habit},function(err,newHabit){
@@ -17,13 +18,12 @@ module.exports.create = function(req,res){
                 user.habits.push(newHabit);
                 user.save();
             });
-            console.log('****',newHabit);
             return res.redirect('back');
         });
     }
 }
 
-
+//controller to make the status of the day as finished
 module.exports.done = function(req,res){
     if(req.user){
         let habitId = req.query.habitId;
@@ -41,6 +41,7 @@ module.exports.done = function(req,res){
     }
 }
 
+//controller to make the status of the day as not finished
 module.exports.undone = function(req,res){
     if(req.user){
         let habitId = req.query.habitId;
@@ -58,6 +59,7 @@ module.exports.undone = function(req,res){
     }
 }
 
+//controller to delete the habit
 module.exports.delete = function(req,res){
     if(req.user){
         User.findById(req.user._id,function(err,user){
@@ -80,6 +82,7 @@ module.exports.delete = function(req,res){
     }
 }
 
+//controller to add the habit as a favourite
 module.exports.addFavourite = function(req,res){
     if(req.user){
         Habit.findById(req.query.habitId,function(err,habit){
@@ -95,6 +98,7 @@ module.exports.addFavourite = function(req,res){
     }
 }
 
+//controller to remove the habit from favourite
 module.exports.removeFavourite = function(req,res){
     if(req.user){
         Habit.findById(req.query.habitId,function(err,habit){

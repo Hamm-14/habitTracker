@@ -1,4 +1,4 @@
-// //return the dates of current week
+//return the dates of current week
 getCurrentWeak = function(){
   let curr = new Date;
   let week = [];
@@ -20,15 +20,14 @@ createWeekDays = function(){
   var monthName = months[d.getMonth()];
   var dayNames = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
 
-  var habitsWeekdays = document.getElementsByClassName('weekdays-container'); //fetching all habits weekdays container
-  for(let j=0;j<habitsWeekdays.length;j++)
+  //fetching all habits weekdays container
+  var habitsWeekdays = document.getElementsByClassName('weekdays-container');
+
+  for(let j=0;j<habitsWeekdays.length;j++) //iterating on all habits elements
   {
-    // console.log(habitsWeekdays[j]);
-    // let day = habitsWeekdays[j].getElementsByClassName(dayNames[0]);
-    // let dayName = day[0].getElementsByClassName('date');
-    // console.log(dayName);
-    // dayName[0].innerText = 'Monday';
-    for(let i=0;i<7;i++){
+    for(let i=0;i<7;i++){//iterating on all days of week
+
+      //if the day is today then add specific styling
       if(week[i].substring(8,10) == today){
         let day = habitsWeekdays[j].getElementsByClassName(dayNames[i]);
         day[0].style.cssText = 'height:100%; width:20%; margin-top:0; box-shadow: 0px 0px 4px 1px #a99cbb';
@@ -37,37 +36,35 @@ createWeekDays = function(){
         let dateElement = day[0].getElementsByClassName('date');
         dateElement[0].innerText = monthName + "," + week[i].substring(8,10);
         dateElement[0].style.cssText = 'font-size:0.9rem';
-        // console.log(dayName);
-        // let finishedElement = dayName[0].getElementsByClassName('finished');
-        // console.log(finishedElement);
-        // finishedElement[0].style.cssText = 'font-size:1.2rem;';
+
+        //if status 'unfinished' is found
+        try{
+          let unFinishedElement = day[0].getElementsByClassName('unfinished');
+          unFinishedElement[0].style.cssText = 'font-size:1.1rem;';
+        }catch(err){
+          if(err){
+            console.log(err);
+          }
+        }
+
+        //if status 'finished' is found
+        try{
+          let finishedElement = day[0].getElementsByClassName('finished');
+          finishedElement[0].style.cssText = 'font-size:1.1rem;';
+        }catch(err){
+          if(err){
+            console.log(err);
+          }
+        } 
       }
-      else{
+      else{ //if the day is other than today
         let day = habitsWeekdays[j].getElementsByClassName(dayNames[i]);
         let dateElement = day[0].getElementsByClassName('date');
         dateElement[0].innerText = monthName + "," + week[i].substring(8,10);
       }
-    
-    // day.className = `${dayName[i]}`;
-    // if(week[i].substring(8,10) == today){
-    //   day.style.cssText = `height: 100%; width: 20%; margin-top: 0;box-shadow: 0px 0px 4px 1px #a99cbb;`;
-    //   day.innerHTML = `<div class="day-name" style="background:#b71c1c;font-size:1rem;">${dayName[i]}</div>
-    //           <div class="date" style="font-size:0.9rem">${monthName},${week[i].substring(8,10)}</div>
-    //           <div class="habit-status">
-    //             <button class="habit-finished"><i class="fas fa-check fa-md"></i></button>
-    //             <button class="habit-unfinished"><i class="fas fa-times fa-md"></i></button>
-    //           </div>`;
-    // }
-    // else{
-    //   day.innerHTML = `<div class="day-name">${dayName[i].substring(0,3)}</div>
-    //           <div class="date">${monthName},${week[i].substring(8,10)}</div>
-    //           <div class="habit-status">
-    //             <button class="habit-finished"><i class="fas fa-check fa-xs"></i></button>
-    //             <button class="habit-unfinished"><i class="fas fa-times fa-xs"></i></button>
-    //           </div>`;
-    // }
-    //  habitsWeekdays[j].appendChild(day);
     }
   }
 }
+
+//calling function to create weekdays
 createWeekDays();

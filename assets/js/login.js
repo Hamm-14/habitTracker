@@ -1,6 +1,7 @@
 
 var formContainer = document.getElementById('login');
 
+//function to toggle signup form
 var signup = function(){
 	let regButton = document.getElementById('reg-button');
 	regButton.addEventListener('click',function(){
@@ -25,7 +26,7 @@ var signup = function(){
 
 signup();
 
-
+//function for back to login
 var backToLogin = function(){
 	let regButton = document.getElementById('reg-button');
 	regButton.addEventListener('click',function(){

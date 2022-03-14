@@ -4,12 +4,12 @@ const router = express.Router();
 
 const habitController = require('../controllers/habit_controller');
 
-router.post('/create',habitController.create);
-router.get('/done',habitController.done);
-router.get('/undone',habitController.undone);
-router.get('/delete',habitController.delete);
+router.post('/create',habitController.create); //for creating new habit
+router.get('/done',habitController.done);      //to mark the status as completed
+router.get('/undone',habitController.undone);  //to mark the status as not completed
+router.get('/delete',habitController.delete);  //to delete a particular habit
 
-router.get('/favourite/add',habitController.addFavourite);
-router.get('/favourite/remove',habitController.removeFavourite);
+router.get('/favourite/add',habitController.addFavourite);       //to add a habit as favourite
+router.get('/favourite/remove',habitController.removeFavourite); //to remove the habit from favourite
 
 module.exports = router;

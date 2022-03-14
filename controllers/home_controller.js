@@ -18,7 +18,7 @@ today = function(){
     return weekdays.indexOf(currentDay);
 }
 
-//stores all the days of current week into week arrray 
+//stores all the days of current week into week[] arrray 
 getCurrentWeek = function(){
     let curr = new Date;
     var week = [];
@@ -30,10 +30,11 @@ getCurrentWeek = function(){
     return week;
 }
 
+//renders the weekly homepage
 module.exports.home = async function(req,res){
     try{
         if(req.user){
-            let user = await User.findById(req.user.id).populate('habits');
+            let user = await User.findById(req.user.id).populate({path: 'habits', options: { sort: { 'createdAt': -1 } } });
             let habitsStatus = [];
             let week = getCurrentWeek();
             for(habit of user.habits){
@@ -42,7 +43,7 @@ module.exports.home = async function(req,res){
                     for(let j=0;j<habit.currentStatus.length;j++){
                         let formattedDate = formatDate(habit.currentStatus[j].date);
                         if(formattedDate == week[i]){
-                            subArr[i] = habit.currentStatus[j].state;
+                            subArr[i] = habit.currentStatus[j].state; //subArr contains status of a day of particular habit
                             break;
                         }
                     }
@@ -52,7 +53,7 @@ module.exports.home = async function(req,res){
             // console.log(today());
             return res.render('home',{
                 habits: user.habits,
-                status: habitsStatus,
+                status: habitsStatus, 
                 week: week
             });
         }
@@ -62,10 +63,11 @@ module.exports.home = async function(req,res){
     }
 }
 
+//renders the daily view
 module.exports.daily = async function(req,res){
     try{
         if(req.user){
-            let user = await User.findById(req.user.id).populate('habits');
+            let user = await User.findById(req.user.id).populate({path: 'habits', options: { sort: { 'createdAt': -1 } } });
             let habitsStatus = [];
             let week = getCurrentWeek();
             for(habit of user.habits){
@@ -81,9 +83,6 @@ module.exports.daily = async function(req,res){
                 }
                 habitsStatus.push(subArr);
             }
-
-            // console.log(habitsStatus[0][5]);
-            // console.log(week);
             return res.render('daily',{
                 habits: user.habits,
                 status: habitsStatus,

@@ -1,4 +1,6 @@
 const User = require('../models/user');
+
+//controller to authenticate the user and lands him on the home page
 module.exports.login = function(req,res){
     if(req.isAuthenticated()){
         return res.redirect('/');
@@ -6,6 +8,7 @@ module.exports.login = function(req,res){
     return res.render('login');
 }
 
+//controller for creating the user on signup 
 module.exports.createUser = function(req,res){
     //if password and confirm_password doesn't match
     if(req.body.password != req.body.confirm_password){
@@ -18,7 +21,6 @@ module.exports.createUser = function(req,res){
         if(user){
             return res.redirect('back');
         }
-
         User.create(req.body,function(err){
             if(err){console.log("error in sign-up user creation",err);return;}
 
@@ -27,10 +29,12 @@ module.exports.createUser = function(req,res){
     });
 }
 
+//for creating session
 module.exports.createSession = function(req,res){
     return res.redirect('/');
 }
 
+//for logout
 module.exports.destroySession = function(req,res){
     req.logout();
     return res.redirect('/users/sign-in');

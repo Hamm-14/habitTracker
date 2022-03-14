@@ -1,5 +1,7 @@
+const dotEnv = require('dotenv');
+dotEnv.config();
 const express = require('express');
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 
 const db = require('./config/mongoose');  //mongoose setup
 const session = require('express-session'); //used for session-cookie
@@ -27,7 +29,7 @@ app.use(session({
         maxAge: (1000*60*60)
     },
     store: MongoStore.create({  //setup mongostore to save the session-cookie in db
-        mongoUrl: process.env.MONGODB_URI,
+        mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/habit_tracker_db',
         autoRemove: 'disabled'
     })
 }));

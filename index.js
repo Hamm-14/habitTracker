@@ -27,7 +27,7 @@ app.use(session({
         maxAge: (1000*60*60)
     },
     store: MongoStore.create({  //setup mongostore to save the session-cookie in db
-        mongoUrl: `mongodb://localhost/habit_tracker_db`,
+        mongoUrl: process.env.MONGODB_URI,
         autoRemove: 'disabled'
     })
 }));

@@ -12,6 +12,7 @@ module.exports.login = function(req,res){
 module.exports.createUser = function(req,res){
     //if password and confirm_password doesn't match
     if(req.body.password != req.body.confirm_password){
+        req.flash('error','Password does not match');
         return res.redirect('back');
     }
     //if password matches,then find the user in the database with mail-id
@@ -19,23 +20,26 @@ module.exports.createUser = function(req,res){
         if(err){console.log("Error in finding the user",err);return;}
         //if user found then return because email should be unique
         if(user){
+            req.flash('error','User Already Exist');
             return res.redirect('back');
         }
         User.create(req.body,function(err){
             if(err){console.log("error in sign-up user creation",err);return;}
-
-            return res.redirect('/');
+            req.flash('success','Signed-up Successfully');
+            return res.redirect('/users/sign-in');
         });
     });
 }
 
 //for creating session
 module.exports.createSession = function(req,res){
+    req.flash('success','Logged in Successfully');
     return res.redirect('/');
 }
 
 //for logout
 module.exports.destroySession = function(req,res){
     req.logout();
+    req.flash('success','Successfully logged out');
     return res.redirect('/users/sign-in');
 }

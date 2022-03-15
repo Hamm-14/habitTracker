@@ -38,6 +38,7 @@ passport.checkAuthentication = function(req,res,next){
     if(req.isAuthenticated()){
         return next();
     }
+    req.flash('error','Username/Password is incorrect');
     return res.redirect('/users/sign-in');
 }
 

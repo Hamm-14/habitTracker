@@ -18,6 +18,7 @@ module.exports.create = function(req,res){
                 user.habits.push(newHabit);
                 user.save();
             });
+            req.flash('success','Habit Created Successfully');
             return res.redirect('back');
         });
     }
@@ -36,6 +37,7 @@ module.exports.done = function(req,res){
             }
             habit.currentStatus.push({date: date,state:'finished'});
             habit.save();
+            req.flash('success','Habit Finished');
             return res.redirect('back');
         });
     }
@@ -54,6 +56,7 @@ module.exports.undone = function(req,res){
             }
             habit.currentStatus.push({date: date, state:'unfinished'});
             habit.save();
+            req.flash('success','Habit not finsished');
             return res.redirect('back');
         });
     }
@@ -77,6 +80,7 @@ module.exports.delete = function(req,res){
                     return;
                 }
             });
+            req.flash('success','Habit Deleted Successfully');
             return res.redirect('back');
         });
     }
@@ -93,6 +97,7 @@ module.exports.addFavourite = function(req,res){
 
             habit.favourite = true;
             habit.save();
+            req.flash('success','Habit added as favourite');
             return res.redirect('back');
         });
     }
@@ -108,6 +113,7 @@ module.exports.removeFavourite = function(req,res){
             }
             habit.favourite = false;
             habit.save();
+            req.flash('success','Habit removed from favourite');
             return res.redirect('back');
         });
     }

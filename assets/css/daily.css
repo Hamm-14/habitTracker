@@ -296,6 +296,7 @@ footer{
 	.habit{
         flex-direction: row;
         height: 50px;
+		width: 90%;
 	}
 	.habit-title{
 		width: 40%;

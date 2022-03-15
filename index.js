@@ -5,6 +5,7 @@ const port = process.env.PORT || 8000;
 
 const db = require('./config/mongoose');  //mongoose setup
 const session = require('express-session'); //used for session-cookie
+const customMware = require('./config/middleware'); //using locally created middleware
 
 //require passport and local startegy that we have set-in
 const passport = require('passport');
@@ -16,6 +17,7 @@ const MongoStore = require('connect-mongo');
 const app = express();
 
 const path = require('path');  //using path module
+const flash = require('connect-flash');  //using this to send flash messages to frontend
 app.set('view engine','ejs'); //setting view engine as ejs
 app.set('views',path.join(__dirname,'views'));  //setting the path from which views will be rendered
 
@@ -37,6 +39,8 @@ app.use(session({
 app.use(passport.initialize());  //initializing passport
 app.use(passport.session());     
 app.use(passport.setAuthenticatedUser);  //setting data of current authenticated user in 'req.user'
+app.use(flash());   //calling flash
+app.use(customMware.setFlash);   //using custom middleware to set the flash to locals
 
 app.use(express.static('assets'));    //accesing static files from assets folder
 app.use(express.urlencoded({extended: true}));  //using parser to read form data
